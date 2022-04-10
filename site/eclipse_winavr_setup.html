@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Eclipse winavr setup - KiloGuide</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Eclipse winavr setup";
+        var mkdocs_page_input_path = "eclipse_winavr_setup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> KiloGuide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/guide-index.html">Guides summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/coding-for-kilobots.html">Coding for kilobots</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/compile-your-code.html">Compile your code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/transfer-and-run-your-program.html">Transfer and run your program</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/use-the-debug-feature.html">Use the debug feature</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="guides/use-an-emulator.html">Use an Emulator</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto-index.html">Tutorials summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto1.html">Race Around the World</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto2.html">Full Metal Kilobot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto3.html">King-o-bot's Games</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto4.html">Morphogenetics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorials/tuto5.html">Rush Hour</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Argos3</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/argos3/argos3-index.html">Argos3 summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/argos3/argos3-1.html">Game of life</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/argos3/argos3-2.html">Space Attack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/argos3/argos3-3.html">Magnet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/argos3/argos3-4.html">Catch The Ball</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Kilombo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="emulator/kilombo/kilombo-index.html">Kilombo summary</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="about.html">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KiloGuide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Eclipse winavr setup</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="using-eclipse-and-winavr-to-program-kilobots">Using Eclipse and WinAVR to Program Kilobots</h1>
+<p><em>Author: Melvin Gauci; melvin.gauci@gmail.com</em></p>
+<p>This document describes how to set up the Eclipse IDE and the WinAVR toolchain to program Kilobots on Windows.</p>
+<p><strong>NOTE:</strong> If you're new to the Kilobot platform, you're advised to <strong><a href="https://www.kilobotics.com/editor">use the online Kilobot editor</a></strong>, instead of going through the process below. This process is only worth the trouble for people who'll be working with the Kilobot platform extensively and would like to use a more comprehensive IDE.</p>
+<h2 id="1-install-winavr">1. Install WinAVR</h2>
+<p>1.1. <a href="http://winavr.sourceforge.net/">Download</a> and install WinAVR. During installation, accept the option to install Programmer’s Notepad.</p>
+<p>1.2. If you’re running certain versions of Windows (certainly 8.1, and apparently Vista) you’ll need to replace a DLL in the WinAVR installation directory (a bug that's described <a href="http://www.avrfreaks.net/forum/windows-81-compilation-error">here</a>). <a href="http://www.madwizard.org/download/electronics/msys-1.0-vista64.zip">Download</a> and extract this DLL, and copy it to <code>/utils/bin</code> under your WinAVR installation directory. When prompted if you want to replace the current DLL, accept.</p>
+<h2 id="2-build-kilolib">2. Build Kilolib</h2>
+<p>2.1. <a href="https://github.com/acornejo/kilolib">Download</a> Kilolib and extract the zipped file.</p>
+<blockquote>
+<p>You now need to build Kilolib, and it’s easiest to do this using the Programmer’s Notepad IDE. There's no need to create a project; you just need to point the IDE to the Kilolib directory, and it will execute the Makefile that's in there.</p>
+</blockquote>
+<p>2.2. In Programmer’s Notepad, click <code>File -&gt; Open</code>, navigate to the Kilolib directory and open the file <code>blank.c</code>. </p>
+<p>2.3. Click <code>Tools &gt; Make All</code>.</p>
+<blockquote>
+<p>If all goes well, you should get: <code>Process Exit Code: 0</code>. The built files are now found under <code>/build</code> in your Kilolib directory. The static library is the file <code>kilolib.a</code>.</p>
+</blockquote>
+<h2 id="3-install-eclipse-and-plugins">3. Install Eclipse and Plugins</h2>
+<blockquote>
+<p>First, you need to have Eclipse installed with C/C++ support (the CDT plugin).</p>
+</blockquote>
+<p>3.1. If you don’t plan to use Eclipse for Java development, you can directly download and install the <a href="http://eclipse.org/downloads/packages/eclipse-ide-cc-developers/lunasr2">Eclipse IDE for C/C++ Developers</a> version. In this case, skip the next step.</p>
+<p>3.2. Alternatively, if you already have Eclipse installed, but not the CDT plugin, install it by following the instructions <a href="http://eclipse.org/cdt/downloads.php">here</a>.</p>
+<blockquote>
+<p>Next, you need to install the AVR Eclipse plugin. Note that <a href="http://avr-eclipse.sourceforge.net/wiki/index.php/The_AVR_GCC_Toolchain">this does NOT include an AVR toolchain</a> (compiler, linker, etc.), which is why you installed WinAVR.</p>
+</blockquote>
+<p>3.3. Install the AVR Eclipse plugin by following the instructions <a href="http://avr-eclipse.sourceforge.net/wiki/index.php/Plugin_Download">here</a>.</p>
+<h2 id="4-set-up-an-eclipse-project">4. Set Up an Eclipse Project</h2>
+<blockquote>
+<p>Now for the slightly grueling part. You'll set up an Eclipse project from scratch with the correct settings to build Kilobot programs. Once you’ve finished, you should probably (read: certainly) make a copy of this ‘clean’ project as a boilerplate, so you don’t have to repeat this procedure every time you start a new project.</p>
+</blockquote>
+<h3 id="create-the-project">Create the Project</h3>
+<p>4.1. Open Eclipse and select a workspace (e.g. create a directory on your desktop for handiness).</p>
+<p>4.2. Click <code>File &gt; New &gt; C Project</code>. In the dialog, give your project a name (here we'll assume it's <code>Kilobot</code>) and under <code>Project Type</code>, select <code>AVR Cross Target Application &gt; Empty Project</code>. Click <code>Next</code>.</p>
+<p>4.3. You probably don’t need both Debug and Release configurations. Uncheck <code>Debug</code> and click <code>Next</code>.</p>
+<p>4.4. In the next dialog (<code>AVR Target Hardware Properties</code>), under <code>MCU Type</code> select <code>ATmega328P</code>, and set the <code>MCU Frequency</code> to <code>8000000</code> Hz (8 MHz). Click <code>Finish</code>.</p>
+<p>4.5. Create a new source file in your project by right clicking on the project's name <code>&gt; New &gt; Source File</code>. Give this new source file a name, e.g. <code>main.c</code>. Copy and paste into this file the code from <code>blank.c</code> found in the Kilolib directory. You’ll use this code to make sure everything is working (later, you’ll write your own programs in this file).</p>
+<h3 id="set-the-header-and-library-file-paths">Set the Header and Library File Paths</h3>
+<blockquote>
+<p>You now need to provide Eclipse with paths to the Kilolib header (.h) and library (.a) files. Although you could set these paths to any directory on your machine, I recommend copying them into your Eclipse project directory. They're small enough, and this way your project is self-contained.</p>
+</blockquote>
+<p>4.6. In your Eclipse project, create two new directories and call them <code>include</code> and <code>lib</code> (to create a new directory, right click on the project name <code>&gt; New &gt; Folder</code>). </p>
+<p>4.7. Copy <em>all</em> the .h files from the Kilolib directory into the <code>include</code> directory in your project. </p>
+<p>4.8. Copy the <code>kilolib.a</code> file from <code>/build</code> in the Kilolib directory into the new <code>lib</code> directory in your project. </p>
+<p>4.9. <em>Very importantly</em>, rename the kilolib.a file you just copied into the <code>lib</code> directory to <code>libkilolib.a</code> (i.e. prepend it with "lib"). This is because the linker expects all library files to start with "lib".</p>
+<blockquote>
+<p>You’ll now tell Eclipse where to look for the header and library files you just copied.</p>
+</blockquote>
+<p>4.10. Right click on the project name and click <code>Properties</code>.  Go to <code>C/C++ Build -&gt; Settings</code>. Under <code>Tool Settings</code> go to <code>AVR Compiler -&gt; Directories</code>. Under <code>Include Paths (-I)</code> add a new path. Click <code>Workspace</code> and navigate to the <code>include</code> directory in your project. Click <code>OK</code>.</p>
+<p>4.11. Still under <code>C/C++ Build -&gt; Settings</code>, go to <code>AVR C Linker -&gt; Libraries</code>. Under <code>Libraries Path (-L)</code> add a new path. Click <code>Workspace</code> and navigate to the <code>lib</code> directory in your project. Click <code>OK</code>.</p>
+<p>4.12. Under <code>Libraries (-l)</code> add a library and type: <code>kilolib</code>. The linker will automatically look for a file called <code>libkilolib.a</code>, which is why we renamed this file.</p>
+<h3 id="fix-a-silly-bug">Fix a Silly Bug</h3>
+<blockquote>
+<p>One last step. If you try building now and your coded uses any functions from the math library (math.h), you’ll get an error. This is due to a <a href="http://forum.arduino.cc/index.php?topic=40215.0">bug</a> - apparently Eclipse attempts to use the C++ library instead of the C one, and this causes a problem.</p>
+</blockquote>
+<p>4.13. Go to <code>AVR C Linker</code> (this is one level above where you already are). Modify the <code>Command Line Pattern</code> to:
+<code>${COMMAND}  -lc -lm ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT}  ${INPUTS}  -lc</code>.</p>
+<h2 id="5-build-your-code-and-upload-it-to-a-kilobot">5. Build Your Code and Upload it to a Kilobot</h2>
+<p>5.1. Close the settings - you’re now good to go. Build the project by pressing <code>Ctrl+B</code> (or going to <code>Project -&gt; Build All</code>). A <code>Release</code> directory will be created in your project, and this will contain the object code file (aka "hex file"), <code>Kilobot.hex</code>.</p>
+<p>5.2. You can now upload the hex file onto your Kilobot robot using the <a href="https://github.com/acornejo/kilogui">KiloGUI tool</a>.</p>
+<h2 id="6-closing-notes">6. Closing Notes</h2>
+<p>When starting a new project, you might want to rename a copy of your boilerplate project. Apart from renaming the directory, you also need to open each of the files <code>.cproject</code> and <code>.project</code>, and do a Search and Replace operation from the old (boilerplate) project name to your desired new one.</p>
+<p>Happy coding.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
