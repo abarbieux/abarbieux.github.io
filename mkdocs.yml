@@ -1,0 +1,45 @@
+site_name: KiloGuide
+
+nav:
+  - 'Home': 'index.md'
+
+  - 'Guides':
+    - 'Guides summary': './guides/guide-index.md'
+    - 'Getting started': './guides/getting-started.md'
+    - 'Coding for kilobots': './guides/coding-for-kilobots.md'
+    - 'Compile your code': './guides/compile-your-code.md'
+    - 'Transfer and run your program': './guides/transfer-and-run-your-program.md'
+    - 'Use the debug feature': './guides/use-the-debug-feature.md'
+    - 'Use an Emulator': './guides/use-an-emulator.md'
+
+  - 'Tutorials':
+ 
+    - 'Tutorials summary': './tutorials/tuto-index.md'
+    - 'Race Around the World': './tutorials/tuto1.md'
+    - 'Full Metal Kilobot': './tutorials/tuto2.md'
+    - "King-o-bot's Games": './tutorials/tuto3.md'
+    - 'Morphogenetics': './tutorials/tuto4.md'
+    - 'Rush Hour': './tutorials/tuto5.md'
+
+  - 'Argos3': 
+
+    - 'Argos3 summary': './emulator/argos3/argos3-index.md'
+    - 'Game of life': './emulator/argos3/argos3-1.md'
+    - 'Space Attack': './emulator/argos3/argos3-2.md'
+    - 'Magnet': './emulator/argos3/argos3-3.md'
+    - 'Catch The Ball': './emulator/argos3/argos3-4.md'
+
+  - 'Kilombo':
+    - 'Kilombo summary': './emulator/kilombo/kilombo-index.md'
+
+
+  - 'About': 'about.md'
+  
+
+theme:
+  name: 'readthedocs'
+
+markdown_extensions:
+  - 'admonition'
+
+use_directory_urls: false
