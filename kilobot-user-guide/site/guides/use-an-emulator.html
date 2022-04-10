@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Use an Emulator - KiloGuide</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Use an Emulator";
+        var mkdocs_page_input_path = "guides\\use-an-emulator.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> KiloGuide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="guide-index.html">Guides summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="coding-for-kilobots.html">Coding for kilobots</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="compile-your-code.html">Compile your code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="transfer-and-run-your-program.html">Transfer and run your program</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="use-the-debug-feature.html">Use the debug feature</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="use-an-emulator.html">Use an Emulator</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#why-use-an-emulator">Why use an Emulator?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pros-fact-that-are-at-your-advantage">Pros : fact that are at your advantage.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#neutral-pros-or-cons-depending-in-your-case">Neutral : Pros or Cons depending in your case.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cons-fact-that-are-at-your-disadvantage">Cons : fact that are at your disadvantage.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-emulator-choose">What Emulator choose</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kilombo">Kilombo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#argos">ARGoS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-install-an-emulator">How to install an emulator?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use-an-emulator">How to Use an emulator?</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto-index.html">Tutorials summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto1.html">Race Around the World</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto2.html">Full Metal Kilobot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto3.html">King-o-bot's Games</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto4.html">Morphogenetics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/tuto5.html">Rush Hour</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Argos3</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/argos3/argos3-index.html">Argos3 summary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/argos3/argos3-1.html">Game of life</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/argos3/argos3-2.html">Space Attack</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/argos3/argos3-3.html">Magnet</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/argos3/argos3-4.html">Catch The Ball</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Kilombo</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../emulator/kilombo/kilombo-index.html">Kilombo summary</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">KiloGuide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Guides &raquo;</li><li>Use an Emulator</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="use-an-emulator">Use an Emulator</h1>
+<hr />
+<h2 id="why-use-an-emulator">Why use an Emulator?</h2>
+<p>Use an emulator instead of real kilobot can be a real benefit for your project.</p>
+<p>But depending on your case, some  disadvantage could be very disabling.</p>
+<p>So, to help you choose whether using an emulator or not, here is a non-exhaustive list of Pros, Neutral and Cons</p>
+<hr />
+<h3 id="pros-fact-that-are-at-your-advantage">Pros : fact that are at your advantage.</h3>
+<ul>
+<li>You can use the emulator whereever you want.</li>
+<li>You are not dependent of the kilobot's battery.</li>
+<li>You are not limitted by the amount of your kilobots.</li>
+<li>You are not limitted by intengrity probleme of your kilobots.</li>
+<li>Testing on emulator is generally faster than testing on kilobot.</li>
+<li>It is easier to debug the code because you can use  <code>assert.h</code>.</li>
+</ul>
+<hr />
+<h3 id="neutral-pros-or-cons-depending-in-your-case">Neutral : Pros or Cons depending in your case.</h3>
+<ul>
+<li>You will be all the time in a perfect condition to test.</li>
+</ul>
+<hr />
+<h3 id="cons-fact-that-are-at-your-disadvantage">Cons : fact that are at your disadvantage.</h3>
+<ul>
+<li>You have to choose your emulator.</li>
+<li>You have to set up your emulator and his config.</li>
+<li>You have to learn the caracteristique of your emulator and how to use it.</li>
+<li>When your project work in your emulator you have to adapte you code for your kilobots.</li>
+</ul>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide only talks about <code>Kilombo</code> and <code>Argos3</code>.</p>
+<p>However, you are advised to look for other emulators to find the one that best suits your project.</p>
+</div>
+<h2 id="what-emulator-choose">What Emulator choose</h2>
+<p>To choose what emulator you will use, you need to know their caracteristiques to compare them.</p>
+<p>To learn their caracteristique, you have to read the documentation of the emulator.</p>
+<p>But you also have to test the emulator by yourself to see if it's really what you are need.</p>
+<p>Here his an example with <a href="https://github.com/JIC-CSB/kilombo"><code>Kilombo</code></a> and <a href="https://github.com/ilpincy/argos3-kilobot"><code>Argos3</code></a>:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Exemple is based on the <code>Kilombo</code> and <code>Argos3</code> documentation and my personal experience!</p>
+<p>This exemple isn't exhaustive and can be invalided by an update of one of the emulator!</p>
+<p>Pleas read the documentation and test by youself before make your choice!</p>
+</div>
+<h3 id="kilombo"><code>Kilombo</code></h3>
+<ul>
+<li>Architecture<ul>
+<li>Single-thread, single process wrapper around kilolib.h</li>
+<li>Robots must run the same behavior</li>
+<li>Global variables cannot be used to contain state</li>
+</ul>
+</li>
+<li>Models<ul>
+<li>Only model offered is the Kilobot</li>
+<li>Motion is kinematics with simple overlap resolution</li>
+<li>Robots cannot push other objects</li>
+<li>Communication neglects obstructions</li>
+<li>Message drop has uniform probability</li>
+</ul>
+</li>
+<li>Features<ul>
+<li>pause button (pause the simulation)</li>
+<li>speed button (button to accelerate or descelerate the simulation)</li>
+<li>possibilities to move the kilobots with the mouse during the simulation</li>
+</ul>
+</li>
+</ul>
+<h3 id="argos"><code>ARGoS</code></h3>
+<ul>
+<li>Architecture<ul>
+<li>Multi-thread, multi-process architecture</li>
+<li>Robots can run different behaviors</li>
+<li>Global variables can be used to contain state</li>
+</ul>
+</li>
+<li>Models<ul>
+<li>Models of Kilobot, other robots, boxes, cylinders</li>
+<li>Motion is full 2D dynamics</li>
+<li>Robots can push other objects</li>
+<li>Communication considers obstruction</li>
+<li>Message drop considers local density</li>
+</ul>
+</li>
+<li>Features<ul>
+<li>pause button (pause the simulation)</li>
+<li>select frame button (button to  move the simulation frame by frame)</li>
+</ul>
+</li>
+</ul>
+<p>As you can see, although these two are made to emule the kilobots, they didn't make it with the same methods!</p>
+<p>So, if you have a project with different code  working together, it would be better to use <code>Argos3</code> because if his multy threading.</p>
+<p>But if you have only one code in all your kilobots and that you want to test them in different layout, <code>Kilombo</code> would be better because of his speed and deplacement feature.</p>
+<p>What emulator you choose depends of your goal(s)!</p>
+<hr />
+<h2 id="how-to-install-an-emulator">How to install an emulator?</h2>
+<p>Each emulator need a specific instalation.</p>
+<p>To know it, read the documentation or the <code>readme.md / readme.txt</code></p>
+<hr />
+<h2 id="how-to-use-an-emulator">How to Use an emulator?</h2>
+<p>Each emulator works with his own rules.</p>
+<p>To know them, you can read the documentation but you must above all make a lot of try.</p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="use-the-debug-feature.html" class="btn btn-neutral float-left" title="Use the debug feature"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tutorials/tuto-index.html" class="btn btn-neutral float-right" title="Tutorials summary">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="use-the-debug-feature.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tutorials/tuto-index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
