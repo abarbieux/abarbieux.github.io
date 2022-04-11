@@ -1,0 +1,414 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <system threads="0" />
+    <experiment length="0"
+                ticks_per_second="100"
+                random_seed="124" />
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <kilobot_controller id="balle">
+      <actuators>
+        <differential_steering implementation="default" />
+        <kilobot_led implementation="default" />
+        <kilobot_communication implementation="default" />
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" show_rays="true" />
+      </sensors>
+      <params behavior="build/examples/behaviors/balle" />
+    </kilobot_controller>
+
+    <kilobot_controller id="chasseur">
+      <actuators>
+        <differential_steering implementation="default" />
+        <kilobot_led implementation="default" />
+        <kilobot_communication implementation="default" />
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" show_rays="true" />
+      </sensors>
+      <params behavior="build/examples/behaviors/chasseur" />
+    </kilobot_controller>
+    
+	
+   
+  
+  <kilobot_controller id="wall">
+      <actuators>
+        <differential_steering implementation="default" />
+        <kilobot_led implementation="default" />
+        <kilobot_communication implementation="default" />
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" show_rays="true" />
+      </sensors>
+      <params behavior="build/examples/behaviors/wall" />
+    </kilobot_controller>
+	
+  </controllers>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="3, 3, 1" center="0,0,0">
+    <kilobot id="kb1">
+      <body position="-0.2,0,0" orientation="180,0,0" />
+      <controller config="balle" />>
+    </kilobot>
+
+    <kilobot id="kb2"> 
+      <body position="0.2,0,0" orientation="0,0,0" />
+      <controller config="chasseur" />>
+    </kilobot>
+	
+<kilobot id="kbWall1">
+  <body position="0.5,0,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall2">
+  <body position="0.497435,0.050584,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall3">
+  <body position="0.489765,0.100649,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall4">
+  <body position="0.47707,0.149682,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall5">
+  <body position="0.459479,0.197178,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall6">
+  <body position="0.437173,0.242651,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall7">
+  <body position="0.410382,0.285634,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall8">
+  <body position="0.379379,0.325686,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall9">
+  <body position="0.344483,0.362396,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall10">
+  <body position="0.306053,0.395388,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall11">
+  <body position="0.264482,0.424322,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall12">
+  <body position="0.220197,0.448902,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall13">
+  <body position="0.173653,0.468876,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall14">
+  <body position="0.125326,0.484039,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall15">
+  <body position="0.075714,0.494234,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall16">
+  <body position="0.025325,0.499358,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall17">
+  <body position="-0.025325,0.499358,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall18">
+  <body position="-0.075714,0.494234,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall19">
+  <body position="-0.125326,0.484039,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall20">
+  <body position="-0.173653,0.468876,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall21">
+  <body position="-0.220197,0.448902,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall22">
+  <body position="-0.264482,0.424322,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall23">
+  <body position="-0.306053,0.395388,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall24">
+  <body position="-0.344483,0.362396,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall25">
+  <body position="-0.379379,0.325686,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall26">
+  <body position="-0.410382,0.285634,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall27">
+  <body position="-0.437173,0.242651,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall28">
+  <body position="-0.459479,0.197178,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall29">
+  <body position="-0.47707,0.149682,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall30">
+  <body position="-0.489765,0.100649,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall31">
+  <body position="-0.497435,0.050584,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall32">
+  <body position="-0.5,0,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall33">
+  <body position="-0.497435,-0.050584,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall34">
+  <body position="-0.489765,-0.100649,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall35">
+  <body position="-0.47707,-0.149682,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall36">
+  <body position="-0.459479,-0.197178,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall37">
+  <body position="-0.437173,-0.242651,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall38">
+  <body position="-0.410382,-0.285634,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall39">
+  <body position="-0.379379,-0.325686,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall40">
+  <body position="-0.344483,-0.362396,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall41">
+  <body position="-0.306053,-0.395388,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall42">
+  <body position="-0.264482,-0.424322,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall43">
+  <body position="-0.220197,-0.448902,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall44">
+  <body position="-0.173653,-0.468876,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall45">
+  <body position="-0.125326,-0.484039,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall46">
+  <body position="-0.075714,-0.494234,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall47">
+  <body position="-0.025325,-0.499358,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall48">
+  <body position="0.025325,-0.499358,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall49">
+  <body position="0.075714,-0.494234,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall50">
+  <body position="0.125326,-0.484039,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall51">
+  <body position="0.173653,-0.468876,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall52">
+  <body position="0.220197,-0.448902,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall53">
+  <body position="0.264482,-0.424322,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall54">
+  <body position="0.306053,-0.395388,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall55">
+  <body position="0.344483,-0.362396,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall56">
+  <body position="0.379379,-0.325686,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall57">
+  <body position="0.410382,-0.285634,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall58">
+  <body position="0.437173,-0.242651,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall59">
+  <body position="0.459479,-0.197178,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall60">
+  <body position="0.47707,-0.149682,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall61">
+  <body position="0.489765,-0.100649,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+<kilobot id="kbWall62">
+  <body position="0.497435,-0.050584,0" orientation="0,0,0" />
+  <controller config="wall" />
+</kilobot>
+
+    
+    
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <kilobot_communication id="kilocomm" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+  <visualization>
+    <qt-opengl>
+      <camera>
+        <placement idx="0" position="-0.126801,-0.00109986,0.249553" look_at="0.303994,-0.00540795,-0.652886" lens_focal_length="20" />
+        <placement idx="1" position="-0.0229259,-0.177184,0.0725521" look_at="0.0273839,0.812385,-0.0624333" lens_focal_length="20" />
+      </camera>
+    </qt-opengl>
+  </visualization>
+
+</argos-configuration>

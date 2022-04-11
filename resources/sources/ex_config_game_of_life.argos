@@ -1,0 +1,585 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <system threads="0" />
+    <experiment length="0"
+                ticks_per_second="31"
+                random_seed="124" />
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <kilobot_controller id="life">
+      <actuators>
+        <differential_steering implementation="default" />
+        <kilobot_led implementation="default" />
+        <kilobot_communication implementation="default" />
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" show_rays="true" />
+      </sensors>
+      <params behavior="build/examples/behaviors/life" />
+    </kilobot_controller>
+    
+    
+    <kilobot_controller id="dead">
+      <actuators>
+        <differential_steering implementation="default" />
+        <kilobot_led implementation="default" />
+        <kilobot_communication implementation="default" />
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" show_rays="true" />
+      </sensors>
+      <params behavior="build/examples/behaviors/dead" />
+    </kilobot_controller>
+    
+    
+	
+   
+  
+  
+	
+  </controllers>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="2, 2, 1" center="0,0,0">
+    <kilobot id="kb1">
+  <body position="-0.225,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb2">
+  <body position="-0.175,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb3">
+  <body position="-0.125,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb4">
+  <body position="-0.075,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb5">
+  <body position="-0.025,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb6">
+  <body position="0.025,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb7">
+  <body position="0.075,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb8">
+  <body position="0.125,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb9">
+  <body position="0.175,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb10">
+  <body position="0.225,-0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb11">
+  <body position="-0.225,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb12">
+  <body position="-0.175,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb13">
+  <body position="-0.125,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb14">
+  <body position="-0.075,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb15">
+  <body position="-0.025,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb16">
+  <body position="0.025,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb17">
+  <body position="0.075,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb18">
+  <body position="0.125,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb19">
+  <body position="0.175,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb20">
+  <body position="0.225,-0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb21">
+  <body position="-0.225,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb22">
+  <body position="-0.175,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb23">
+  <body position="-0.125,-0.125,0" orientation="0,0,0" />
+  <controller config="life" />
+</kilobot>
+
+<kilobot id="kb24">
+  <body position="-0.075,-0.125,0" orientation="0,0,0" />
+  <controller config="life" />
+</kilobot>
+
+<kilobot id="kb25">
+  <body position="-0.025,-0.125,0" orientation="0,0,0" />
+  <controller config="life" />
+</kilobot>
+
+<kilobot id="kb26">
+  <body position="0.025,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb27">
+  <body position="0.075,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb28">
+  <body position="0.125,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb29">
+  <body position="0.175,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb30">
+  <body position="0.225,-0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb31">
+  <body position="-0.225,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb32">
+  <body position="-0.175,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb33">
+  <body position="-0.125,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb34">
+  <body position="-0.075,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb35">
+  <body position="-0.025,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb36">
+  <body position="0.025,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb37">
+  <body position="0.075,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb38">
+  <body position="0.125,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb39">
+  <body position="0.175,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb40">
+  <body position="0.225,-0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb41">
+  <body position="-0.225,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb42">
+  <body position="-0.175,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb43">
+  <body position="-0.125,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb44">
+  <body position="-0.075,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb45">
+  <body position="-0.025,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb46">
+  <body position="0.025,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb47">
+  <body position="0.075,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb48">
+  <body position="0.125,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb49">
+  <body position="0.175,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb50">
+  <body position="0.225,-0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb51">
+  <body position="-0.225,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb52">
+  <body position="-0.175,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb53">
+  <body position="-0.125,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb54">
+  <body position="-0.075,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb55">
+  <body position="-0.025,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb56">
+  <body position="0.025,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb57">
+  <body position="0.075,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb58">
+  <body position="0.125,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb59">
+  <body position="0.175,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb60">
+  <body position="0.225,0.025,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb61">
+  <body position="-0.225,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb62">
+  <body position="-0.175,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb63">
+  <body position="-0.125,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb64">
+  <body position="-0.075,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb65">
+  <body position="-0.025,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb66">
+  <body position="0.025,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb67">
+  <body position="0.075,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb68">
+  <body position="0.125,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb69">
+  <body position="0.175,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb70">
+  <body position="0.225,0.075,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb71">
+  <body position="-0.225,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb72">
+  <body position="-0.175,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb73">
+  <body position="-0.125,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb74">
+  <body position="-0.075,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb75">
+  <body position="-0.025,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb76">
+  <body position="0.025,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb77">
+  <body position="0.075,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb78">
+  <body position="0.125,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb79">
+  <body position="0.175,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb80">
+  <body position="0.225,0.125,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb81">
+  <body position="-0.225,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb82">
+  <body position="-0.175,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb83">
+  <body position="-0.125,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb84">
+  <body position="-0.075,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb85">
+  <body position="-0.025,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb86">
+  <body position="0.025,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb87">
+  <body position="0.075,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb88">
+  <body position="0.125,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb89">
+  <body position="0.175,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb90">
+  <body position="0.225,0.175,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb91">
+  <body position="-0.225,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb92">
+  <body position="-0.175,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb93">
+  <body position="-0.125,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb94">
+  <body position="-0.075,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb95">
+  <body position="-0.025,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb96">
+  <body position="0.025,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb97">
+  <body position="0.075,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb98">
+  <body position="0.125,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb99">
+  <body position="0.175,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+
+<kilobot id="kb100">
+  <body position="0.225,0.225,0" orientation="0,0,0" />
+  <controller config="dead" />
+</kilobot>
+	
+    
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <kilobot_communication id="kilocomm" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+  <visualization>
+    <qt-opengl>
+      <camera>
+        <placement idx="0" position="-0.126801,-0.00109986,0.249553" look_at="0.303994,-0.00540795,-0.652886" lens_focal_length="20" />
+        <placement idx="1" position="-0.0229259,-0.177184,0.0725521" look_at="0.0273839,0.812385,-0.0624333" lens_focal_length="20" />
+      </camera>
+    </qt-opengl>
+  </visualization>
+
+</argos-configuration>
