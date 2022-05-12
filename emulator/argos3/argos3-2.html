@@ -90,9 +90,59 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#working">Working</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#schema">Schema</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#what-you-will-learn">What you will learn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#defining-macros-and-global-variables">Defining macros and global variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#meteore-program">Meteore program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-function">The setup() function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-function">The loop() function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-odd-and-pair-program">The ODD and PAIR program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-function_1">The setup() function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion">The loop() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication_1">Communication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#base-program">BASE program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-focntion">The setup() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion_1">The loop() focntion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#base_left_ref-program">BASE_LEFT_REF program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-focntion_1">The setup() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion_2">The loop() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comunication">Comunication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#base_right-program">BASE_RIGHT program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-focntion_2">The setup() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion_3">The loop() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication_2">Communication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put-it-all-together">Put it all together</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#we-are-done">We are done !</a>
     </li>
@@ -153,18 +203,748 @@ But in this version, the goal was too shoot the meteore before they blow up the 
 <p>Then the ship  move to right or to left while destroying the asteroids that will appear by firing his lasez at each movment.</p>
 <p>The game ends if the ship is destroyed or if an asteroid reaches the last row of kilobots.</p>
 <hr />
-<h2 id="schema">Schema</h2>
-<hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>Basic template for a kilobot program</li>
-<li>How to make the kilobot flash color with <code>set_color()</code></li>
-<li>How to make the kilobot move with <code>set_motors()</code></li>
+<li>Why you have to pay attention at the color when you use in Argors3 emulator.</li>
+<li>Use more than two different program simultaneously.</li>
 </ul>
 <hr />
+<h2 id="defining-macros-and-global-variables">Defining macros and global variables</h2>
+<p>The macros and the global variable are almost identical in each program.
+The first 6 macros are used to defined the state of the kilobot in the game.
+The 5 after are used to defined the program's type of the kilobot.
+False and True define True and False.
+And the three lats define the movment of the ship</p>
+<pre><code class="language-c">//state value
+#define VIDE 0 // set_color (RGB(0,0,0));
+#define METEORE 1 // set_color (RGB(2,1,0));
+#define LASER 2 // set_color (RGB(3,3,0));
+#define SHIP 3 // set_color (RGB(0,0,3));
+#define EXPLOSION 4 // set_color (RGB(3,0,0));
+#define GAME_OVER 5 // set_color (RGB(3,3,3));
+
+//type value
+#define GENERATOR 0
+#define PAIR 1
+#define ODD 2
+#define BASE 3
+#define BASE_CENTER 4 
+
+#define FALSE 0
+#define TRUE 1
+
+//ship movement
+#define STOP 0
+#define RIGHT 1
+#define LEFT 2
+
+</code></pre>
+<p>The globals variables are used to :</p>
+<ul>
+<li>Contain the unique id of the kilobot.</li>
+<li>Contain the state in game of the kilobot .</li>
+<li>Contain the state in game send of  the kilobot.</li>
+<li>Contain program's type.</li>
+<li>Store the list of unique id of the neighbore(the size can change depending on the program).</li>
+<li>Store the Vertical distance.</li>
+<li>Store True or False. To know if distance_ship is already set up.</li>
+<li>Store the Horizontale distance.</li>
+<li>Store True or False. To know if distance_left_ref is already set up.</li>
+<li>Store the direction of the ship.</li>
+<li>Store the message.</li>
+<li>Store the distance between two kilobot.</li>
+</ul>
+<pre><code class="language-c">int id;
+int state;
+int state_send;
+int type;
+int randomizer;
+int neighbor_array [3];
+int distance_ship;
+int distance_block;
+int distance_left_ref;
+int distance_left_ref_block;
+int ship_movement;
+int limit;
+message_t message;
+distance_measurement_t dist;
+
+</code></pre>
+<hr />
+<h2 id="meteore-program">Meteore program</h2>
+<h3 id="the-setup-function">The <code>setup()</code> function</h3>
+<pre><code class="language-c">//set the state
+    state = VIDE;
+    state_send = VIDE;
+    id = kilo_uid;
+    type = GENERATOR;
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,0));
+</code></pre>
+<h3 id="the-loop-function">The <code>loop()</code> function</h3>
+<p>If the kilobot receives a message with GAME_OVER in it, the game is over and the kilobot send at all his neighbor that the game is over.</p>
+<p>But else, every 2 seconds, the kilobot will check his state.</p>
+<pre><code class="language-c">void loop() {
+    if ( state == GAME_OVER){
+        set_color (RGB(3,3,3));
+        state_send = GAME_OVER;
+
+    }
+    else if((kilo_ticks %64) == 0){ // start loop every 2 sec
+</code></pre>
+<p>If his state his VIDE or LASER, there is a one in five chance that a meteore is generated.</p>
+<pre><code class="language-c">
+if ( state == VIDE || state == LASER) {
+
+             randomizer = rand_hard() %5; // 0 or 1 or 2 or 3 or 4
+</code></pre>
+<p>If the meteore is generated, the state is change by METEORE or by Explosion if the state was LASER.
+The state_send and the color wil also be updated except if the state become METEORE because the meteore have to wait one turn at their location.</p>
+<pre><code class="language-c">// meteore genereted
+             if (randomizer == 0){
+                //make an explosion
+                 if ( state == LASER){
+
+                     state = VIDE;
+                     set_color (RGB(3,0,0));
+                     state_send = EXPLOSION;
+                 }
+                 //generate the meteore but don't send the information to wait on turn
+                 else{
+                     state = METEORE;
+                     set_color (RGB(2,1,0));
+                     state_send = VIDE;
+                 }
+             }
+</code></pre>
+<p>If the METEORE is not generated, the state become VIDE</p>
+<pre><code class="language-c"> else {
+                // the laser is clear of the game
+                 if (state == LASER){
+
+                    set_color (RGB(3,3,0));
+                 }
+                 // state VIDE  
+                 else {
+
+                    set_color (RGB(0,0,0));
+
+                 }
+                 state = VIDE;
+                 state_send = VIDE;
+             }
+</code></pre>
+<p>Else if the state was METEORE, the state become empty and we send the message METEORE at the neighbor because of the turn of wiating.</p>
+<pre><code class="language-c">else if ( state == METEORE){
+
+             state = VIDE;
+             state_send = METEORE;
+             set_color (RGB(2,1,0));
+
+         }
+</code></pre>
+<p>Else if the state was EXPLOSION, the state is become VIDE and we send EXPLOSION.
+However, the color stay brown to avoid a visual bug.</p>
+<pre><code class="language-c">
+
+
+         //clear the state of explosion
+         else if ( state == EXPLOSION){
+
+            state = VIDE;
+            set_color (RGB(3,0,0));
+            state_send = EXPLOSION  ;
+         }
+
+     }
+}
+</code></pre>
+<p>And finaly we clear the list of neighbor</p>
+<pre><code class="language-c">//clear neighbor_array
+memset(neighbor_array,0,1 * sizeof(int));
+</code></pre>
+<h3 id="communication">Communication</h3>
+<p>´message_tx()´ is basic but ´message_rx()´  as a lot to check .</p>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.crc = message_crc(&amp;message);
+    return &amp;message;
+}
+</code></pre>
+<p>Firsly, we check if the message received is GAME_OVER.
+If yes, it is the end of the fonction.</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    if (msg-&gt;data[0] == GAME_OVER){
+        //stop the game if GAME_OVER
+        state = GAME_OVER;
+    }
+</code></pre>
+<p>Check that the message of a neigbhor has not already been taken into account if else stop the loop.</p>
+<pre><code class="language-c">    int i;
+    for ( i = 0; i&lt;3; i++) {
+
+        //avoid that a neighbor could be count more than one time
+        if(msg-&gt;data[1] == neighbor_array[i]){
+            //stop loop if message already receive
+
+            break;
+            }
+</code></pre>
+<p>If neighbor_array is not nul, we check the kilobot type in the message received.</p>
+<pre><code class="language-c">if (!neighbor_array[i]  ){
+</code></pre>
+<p>We check that the type isn't GENERATOR to avoid horizontal communication.</p>
+<pre><code class="language-c">// if the message is send by the kilobot under the GENERETOR
+if (msg-&gt;data[2] != GENERATOR){
+                neighbor_array[i] = msg-&gt;data[1];
+</code></pre>
+<p>If the state send is LASER and adapt the new state in fonction of the current state</p>
+<pre><code class="language-c">
+if (msg-&gt;data[0]== LASER ){
+
+    if(state == METEORE){ // explose meteore
+
+        state = EXPLOSION;
+
+
+    }
+    // set state to explosion if state_send is METEORE because the meteore wait 2 turn in the GENERETOR
+    else if(state_send == METEORE) {
+        state = EXPLOSION;
+
+    }
+    else {
+        state = LASER;
+
+    }
+
+
+</code></pre>
+<h2 id="the-odd-and-pair-program">The ODD and PAIR program</h2>
+<p>The code of ODD.C and PAIR.C is excatly the same except for the <code>setup()</code> fonction therefore I will explain them together by using Pair.c code.
+You just have to replace "ODD" by "PAIR" and vice versa in the code.</p>
+<h3 id="the-setup-function_1">The <code>setup()</code> function</h3>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = VIDE;
+    state_send = VIDE;
+    id = kilo_uid;
+    type = PAIR;
+    distance_ship = 0;
+    distance_block = FALSE;
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,0));
+
+
+
+}
+</code></pre>
+<h3 id="the-loop-focntion">The <code>loop()</code> focntion</h3>
+<p>if state received his GAME_OVER, end the game</p>
+<pre><code class="language-c">void loop() {
+    if ( state == GAME_OVER){
+        //game over
+        set_color (RGB(3,3,3));
+        state_send = GAME_OVER;
+    }
+</code></pre>
+<p>Every 2 secondes, state_send become state, state become VIDE, the color his changed and the list of neighbor is reset.</p>
+<pre><code class="language-c">
+     if((kilo_ticks %64) == 0){ // start loop every 2 sec
+         if ( state == VIDE) {
+             state_send = VIDE;
+             set_color (RGB(0,0,0));
+         }
+         else if (state == METEORE){
+             state = VIDE;
+             set_color (RGB(2,1,0));
+             state_send = METEORE;
+         }
+         else if (state == EXPLOSION){
+             state = VIDE;
+             set_color (RGB(3,0,0));
+             state_send = EXPLOSION;
+         }
+         else if (state == LASER){
+             state = VIDE;
+             set_color (RGB(3,3,0));
+             state_send = LASER;
+         }
+         memset(neighbor_array,0,4 *sizeof(int));
+     }
+}
+</code></pre>
+<h3 id="communication_1">Communication</h3>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship;
+    message.crc = message_crc(&amp;message);
+    return &amp;message;
+}
+</code></pre>
+<p>The same as in meteore</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    if (msg-&gt;data[0] == GAME_OVER){
+        //stop the game if GAME_OVER
+        state = GAME_OVER;
+    }
+    int i;
+    for ( i = 0; i&lt;4; i++) {
+        assert(i&lt;4);
+        //avoid that a cell could be count more than one time
+        if(msg-&gt;data[1] == neighbor_array[i]){
+            //stop loop if message already receive
+            break;
+            }
+        if (!neighbor_array[i]  ){
+            neighbor_array[i] = msg-&gt;data[1];
+</code></pre>
+<p>If the kilobot is not lockek and that the message receive come from the good type of kilobot, we locke the kilobot and we give him a value corresponding his horizontal distance in the grid.</p>
+<pre><code class="language-c">//setup  distance of the BASE
+            if (distance_block == FALSE){
+                if (msg-&gt;data[2] == BASE || msg-&gt;data[2] == BASE_CENTER || (msg-&gt;data[2] == ODD &amp;&amp; msg-&gt;data[3] != 0) ){
+                    distance_block = TRUE;
+                    distance_ship = msg-&gt;data[3] + 1;
+                }
+
+            }
+</code></pre>
+<p>If the message receive his by the same type has the kilobot.</p>
+<pre><code class="language-c">if (msg-&gt;data[2] != PAIR){
+</code></pre>
+<p>If the message receive his a LAZER, we checkthe distance_ship to know if the sender of the message is below the current kilobot (because the lasers move from bottom to top.)
+Next, we change the new state depending on the current state.</p>
+<pre><code class="language-c">
+
+if (msg-&gt;data[0] == SHIP || (msg-&gt;data[0] == LASER &amp;&amp; distance_ship &gt; msg-&gt;data[3])) {
+    if ( state == VIDE || state == EXPLOSION) {
+        if (state_send == METEORE){
+            state = EXPLOSION;
+        }
+        else{
+            state = LASER;
+        }
+    }
+    else if (state == METEORE){
+        state = EXPLOSION;
+    }
+}
+</code></pre>
+<p>Else if the message received his METEORE, we check that the sender of the message is above the current kilobot (because the meteore move from top to bottom.)</p>
+<pre><code class="language-c">else if (msg-&gt;data[0] == METEORE &amp;&amp; (distance_ship &lt; msg-&gt;data[3] || msg-&gt;data[2] == GENERATOR )){
+
+    if (state == LASER){
+        if (state_send == LASER){
+        }
+        else {
+            state = EXPLOSION;
+        }
+    }
+    else if (state == VIDE || state == EXPLOSION) {
+        if (state_send != LASER){
+            state = METEORE;
+        }
+    }
+}
+
+</code></pre>
+<h2 id="base-program">BASE program</h2>
+<h3 id="the-setup-focntion">The <code>setup()</code> focntion</h3>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = VIDE;
+    state_send = VIDE;
+    id = kilo_uid;
+    type = BASE;
+    distance_ship = 0;
+    distance_left_ref = 0;
+    ship_movement = 5;
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship; //ligne
+    message.data[4] =  distance_left_ref; //colonne
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,0));
+
+
+
+}
+</code></pre>
+<h3 id="the-loop-focntion_1">The <code>loop()</code> focntion</h3>
+<p>Same as meteore</p>
+<pre><code class="language-c">void loop() {
+    if ( state == GAME_OVER){
+        //game over
+        set_color (RGB(3,3,3));
+    }
+    else {
+        if((kilo_ticks %64) == 0){ // start loop every 2 sec
+</code></pre>
+<p>Setup ship_movement at 5 in case of the ship would be not here</p>
+<pre><code class="language-c">ship_movement = 5;
+</code></pre>
+<p>If the ship is here, randomize his deplacment.</p>
+<pre><code class="language-c">if ( state == SHIP) {
+
+                //choice the movement of the ship
+                randomizer = rand_hard() %3 ;
+                //ship go
+                if (randomizer == 0){
+                    state = SHIP;
+                    set_color (RGB(0,0,3));
+                    state_send = SHIP;
+                    ship_movement = STOP;
+
+                }
+                //ship go left
+                else if (randomizer == 1){
+                    state = VIDE;
+                    set_color (RGB(0,0,3));
+                    state_send = SHIP;
+                    ship_movement = LEFT;
+
+                }
+                //ship go right
+                else if (randomizer == 2){
+                    state = VIDE;
+                    set_color (RGB(0,0,3));
+                    state_send = SHIP;
+                    ship_movement = RIGHT;
+                }
+            }
+</code></pre>
+<p>End the game if a meteore hit the BASE.</p>
+<pre><code class="language-c">//set state to GAME_OVER
+            else if (state == METEORE){
+                state = GAME_OVER;
+                set_color (RGB(2,1,0));
+                state_send = GAME_OVER;
+            }
+</code></pre>
+<p>Define state_send depending of state and next clear neighbor_array. </p>
+<pre><code class="language-c">//set state to VIDE
+else if ( state == VIDE){
+    state_send = VIDE;
+    set_color (RGB(0,0,0));
+}
+    //reset state when explosion
+else if ( state == EXPLOSION){
+    state_send = VIDE;
+    set_color (RGB(3,0,0));
+}
+
+//clear neighbor_array
+memset(neighbor_array,0,3 * sizeof(int));
+
+
+### Comunication
+
+```c
+//send a message
+message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship; //ligne
+    message.data[4] =  distance_left_ref; //colonne
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+
+    return &amp;message;
+}
+</code></pre>
+<p>Cehck if the game is over.</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    if (msg-&gt;data[0] == GAME_OVER){
+        //stop the game if GAME_OVER
+        state = GAME_OVER;
+    }
+
+
+</code></pre>
+<p>For each element in the loop check if has not already received the message</p>
+<pre><code class="language-c">    int i;
+    for ( i = 0; i&lt;3; i++) {
+        assert(i&lt;3);
+        //avoid that a cell could be count more than one time
+        if(msg-&gt;data[1] == neighbor_array[i]){
+            //stop loop if message already receive
+            break;
+            }
+</code></pre>
+<p>Find the Horizontal value of the kilobot.</p>
+<pre><code class="language-c">        if (!neighbor_array[i]  ){
+            neighbor_array[i] = msg-&gt;data[1];
+
+            //Find the distance from Base_left_ref
+            if (distance_left_ref_block == FALSE){
+                if (msg-&gt;data[2] == BASE_CENTER || (msg-&gt;data[4] != 0 &amp;&amp; msg-&gt;data[2] == BASE)){
+
+                    distance_left_ref_block = TRUE;
+                    distance_left_ref = msg-&gt;data[4] + 1;
+
+                }
+            }
+</code></pre>
+<p>If the kilobot receives Ship, check if it's for him or not</p>
+<pre><code class="language-c">            //if the ship go RIGHT chek if the BASE is at the left of the ship
+            //              or
+            //if the ship go LEFT check if  the BASE is at the Left of the ship         
+            if (msg-&gt;data[0] == SHIP &amp;&amp; ((msg-&gt;data[4] &lt; distance_left_ref &amp;&amp; msg-&gt;data[5] == RIGHT) || (msg-&gt;data[4] &gt; distance_left_ref &amp;&amp; msg-&gt;data[5] == LEFT))) {
+                //set state to SHIP
+
+                state = SHIP;
+            }
+</code></pre>
+<p>If message receiv contain METEORE.
+If scontain the ship, explode the sip</p>
+<pre><code class="language-c">            else if (msg-&gt;data[0] == METEORE){
+
+                //ship explosion
+                if (state == SHIP){
+
+                    state = EXPLOSION;
+                }
+</code></pre>
+<p>If the ship was here one turn before, the state is VIDE because the ship had fire a lazer to explode the meteore before.</p>
+<pre><code class="language-c">                //if the state_send is ship and the state is VIDE then the meteore explode before the BASE so state is VIDE
+                else if(state == VIDE &amp;&amp; state_send == SHIP){
+                    state = VIDE;
+                }
+</code></pre>
+<p>else state become METEORE</p>
+<pre><code class="language-c">else {
+    // don't stop the game instantly because the ship could be arrive and make an explosion
+    state = METEORE;
+}
+</code></pre>
+<h2 id="base_left_ref-program">BASE_LEFT_REF program</h2>
+<p>BASE_LEFT_REF.c code has the same logic that BASE.C </p>
+<h3 id="the-setup-focntion_1">The <code>setup()</code> focntion</h3>
+<p>distance_left_ref and distance_ship are set up at 0 because this kilobot his the base to generate all the value of the grid.
+state and state_send are set up to SHIP because the Ship start here.</p>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = SHIP;
+    state_send = SHIP;
+    id = kilo_uid;
+
+    type = BASE_CENTER;;
+    distance_ship = 0;
+    distance_left_ref = 0;
+    ship_movement = 5;
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship;
+    message.data[4] =  distance_left_ref;
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,3));
+
+
+
+}
+</code></pre>
+<h3 id="the-loop-focntion_2">The <code>loop()</code> focntion</h3>
+<p>Same as BASE.c but the ship can go to the left.</p>
+<pre><code class="language-c">
+
+void loop() {
+
+                if (randomizer == 0){
+                    state_send = SHIP;
+                    ship_movement = STOP;
+                    set_color (RGB(0,0,3));
+
+                }
+                //ship go right
+                else if (randomizer == 1){
+                    state = VIDE;
+                    set_color (RGB(0,0,3));
+                    state_send = SHIP;
+                    ship_movement = RIGHT;
+
+                }
+
+</code></pre>
+<h3 id="comunication">Comunication</h3>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship; //ligne
+    message.data[4] =  distance_left_ref; //colonne
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+    return &amp;message;
+}
+</code></pre>
+<p>Same as BASE.C except that it can not receive a message from his left and it has not to find his distance_left_ref since it his already define.</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+
+            //if the ship go LEFT check if  the BASE is at the Left of the ship
+            if ((msg-&gt;data[4] &gt; distance_left_ref &amp;&amp; msg-&gt;data[5] == LEFT)) {
+
+                //set state to SHIP
+                state = SHIP;
+            }
+
+}
+</code></pre>
+<h2 id="base_right-program">BASE_RIGHT program</h2>
+<p>BASE_RIGHT.c code has the same logic that BASE.C </p>
+<h3 id="the-setup-focntion_2">The <code>setup()</code> focntion</h3>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = VIDE;
+    state_send = VIDE;
+    id = kilo_uid;
+    type = BASE;
+    distance_ship = 0;
+    distance_left_ref = 0;
+    ship_movement = 5;
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship;
+    message.data[4] =  distance_left_ref;
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,0));
+}
+
+</code></pre>
+<h3 id="the-loop-focntion_3">The <code>loop()</code> focntion</h3>
+<p>Same as BASE.c but the ship can go to the right.</p>
+<pre><code class="language-c">void loop() {
+
+            //choice the movement of the ship
+            randomizer = rand_hard() %2;
+            //ship stop
+            if (randomizer == 0){
+                 state = SHIP;
+                 set_color (RGB(0,0,3));
+                 state_send = SHIP;
+                 ship_movement = STOP;
+
+             }
+             //ship go left
+             else if (randomizer == 1){
+                 state = VIDE;
+                 set_color (RGB(0,0,3));
+                 state_send = SHIP;
+                 ship_movement = LEFT;
+
+
+             }
+</code></pre>
+<h3 id="communication_2">Communication</h3>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state_send;
+    message.data[1] = id;
+    message.data[2] = type;
+    message.data[3] =  distance_ship;
+    message.data[4] =  distance_left_ref;
+    message.data[5] =  ship_movement;
+    message.crc = message_crc(&amp;message);
+    return &amp;message;
+}
+</code></pre>
+<p>Same as BASE.c excpet that it can not receive a message from his right</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+
+
+
+            //if the ship go RIGHT chek if the BASE is at the left of the ship
+            if (msg-&gt;data[0] == SHIP &amp;&amp; (msg-&gt;data[4] &lt; distance_left_ref &amp;&amp; msg-&gt;data[5] == RIGHT)) {
+                //set state to SHIP
+                state = SHIP;
+            }
+
+</code></pre>
+<h3 id="put-it-all-together">Put it all together</h3>
+<p>Obviously, do not forget to add the <code>main()</code> at the end of the program</p>
+<pre><code class="language-c">int main(){
+    kilo_init();
+
+    kilo_message_rx = message_rx;
+
+    kilo_message_tx = message_tx;
+
+    kilo_start(setup, loop);
+
+    return 0;
+}
+</code></pre>
 <hr />
 <h2 id="we-are-done">We are done !</h2>
-<p>You can now admire your kilobot burn the tarmac ! Well, it might not be that impressive. The kilobots were probably not designed as racing machines. But fair enough, it at least made you learn the basics of programming for kilobots !</p>
+<p>You can now watch the game play itself! You could try to implement a controller but with Argos3, you can not move the kilobot during the simulation.</p>
 <hr />
               
             </div>

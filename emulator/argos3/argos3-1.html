@@ -88,9 +88,21 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#working">Working</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#schema">Schema</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#what-you-will-learn">What you will learn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lifes-program">Life's  program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#defining-macros-global-variables-and-linked-list">Defining macros, global variables and linked list</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-function">The setup() function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion">The `loop() focntion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#put-it-all-together">Put it all together</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#we-are-done">We are done !</a>
     </li>
@@ -150,18 +162,298 @@
 <h2 id="working">Working</h2>
 <p>The kilobots are place in a large area. They begins with the state "dead" or "living". The majority of the time they send a message with their statut. Next, after a certain number of seconds they update their statut following the rules of the Game of life.</p>
 <hr />
-<h2 id="schema">Schema</h2>
-<hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>Basic template for a kilobot program</li>
-<li>How to make the kilobot flash color with <code>set_color()</code></li>
-<li>How to make the kilobot move with <code>set_motors()</code></li>
+<li>Use a linked list with the kilobots</li>
 </ul>
 <hr />
+<h2 id="lifes-program">Life's  program</h2>
+<h3 id="defining-macros-global-variables-and-linked-list">Defining macros, global variables and linked list</h3>
+<p>Our program are defined four macros.</p>
+<p>The two first are used to define the state of the kilobot.
+The last two are used to define if the kilobot is ready or not to send his message.</p>
+<pre><code class="language-c">#define DEAD 0
+#define LIVING 1
+
+
+#define READY 1
+#define NOTREADY 0
+</code></pre>
+<p>The 5 globals variables are used to :</p>
+<ul>
+<li>Contain the state of the kilobot.</li>
+<li>Contain the number of life kilobot neighboring.</li>
+<li>Contain the number of  dead kilobot neighboring.</li>
+<li>Contain the unique id of the kilobot.</li>
+<li>Storing message.</li>
+</ul>
+<pre><code class="language-c">int state;
+int neighbor_living;
+int neighbor_dead;
+int id;
+
+message_t message;
+</code></pre>
+<p>We will see later that we need to stock divers data for each kilobot neighboring.
+But it is not a easy task  since we the number of neigbhor is changeable and the number of element in a list must be define at the initialization in C.
+This is why we used a linked list to bypass the siez limitation of a list.</p>
+<p>Below is how the linked list is implemented : </p>
+<pre><code class="language-c">struct node {
+    int key;
+    struct node *next;
+
+};
+
+struct node *head = NULL;
+struct node *current = NULL;
+
+
+
+// to find the length of the list
+int length() {
+    int length =0;
+    struct node *current;
+
+    for ( current = head; current != NULL; current = current-&gt;next){
+        length++;   
+     }
+
+    return length;
+}
+
+
+//is list empty
+bool isEmpty() {
+   return head == NULL;
+}
+
+//find a link with given key
+struct node* find(int key) {
+
+   //start from the first link
+   struct node* current = head;
+
+   //if list is empty
+   if(head == NULL) {
+      return NULL;
+   }
+
+   //navigate through list
+   while(current-&gt;key != key) {
+
+      //if it is last node
+      if(current-&gt;next == NULL) {
+         return NULL;
+      } else {
+         //go to next link
+         current = current-&gt;next;
+      }
+   }      
+
+   //if data found, return the current Link
+   return current;
+}
+
+//delete first item
+struct node* deleteFirst() {
+
+   //save reference to first link
+   struct node *tempLink = head;
+
+   //mark next to first link as first 
+   head = head-&gt;next;
+
+   //return the deleted link
+   return tempLink;
+}
+
+//delete a link with given key
+struct node* delete(int key) {
+
+   //start from the first link
+   struct node* current = head;
+   struct node* previous = NULL;
+
+   //if list is empty
+   if(head == NULL) {
+      return NULL;
+   }
+
+   //navigate through list
+   while(current-&gt;key != key) {
+
+      //if it is last node
+      if(current-&gt;next == NULL) {
+         return NULL;
+      } else {
+         //store reference to current link
+         previous = current;
+         //move to next link
+         current = current-&gt;next;
+      }
+   }
+
+   //found a match, update the link
+   if(current == head) {
+      //change first to point to next link
+      head = head-&gt;next;
+   } else {
+      //bypass the current link
+      previous-&gt;next = current-&gt;next;
+   }    
+
+   return current;
+}
+
+//insert link at the first location
+void insertFirst(int key) {
+   //create a link
+   struct node *link = (struct node*) malloc(sizeof(struct node));
+
+   link-&gt;key = key;
+
+
+   //point it to old first node
+   link-&gt;next = head;
+
+   //point first to new first node
+   head = link;
+}
+</code></pre>
+<p>Some fonction implemented are don't use in the program but there are still in here for future addon.</p>
+<p>If you don't undestand hwo work a linked list <a href="https://www.tutorialspoint.com/data_structures_algorithms/linked_list_algorithms.htm">here</a> is a website with more explanation.</p>
+<h3 id="the-setup-function">The <code>setup()</code> function</h3>
+<p>In the <code>setup()</code> fonction are defined all the global variable as well as the structure of the message sent and the color of the kilobot.</p>
+<pre><code class="language-c">void setup() {
+
+    //set state
+    state = LIVING;
+    neighbor_dead = 0;
+    neighbor_living = 0;
+    id = kilo_uid;
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state;
+    message.data[1] = id;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,3,0)); //green
+
+
+}
+</code></pre>
+<h3 id="the-loop-focntion">The <code>`loop()</code> focntion</h3>
+<p>Since <code>`kilo_tocks</code> is increamented 32 times per second, with modulo 64,every 2 seconds the program in the loop is triggered.</p>
+<p>Every 2 seconds, the rule of the game of life will be applied on the kilobot.</p>
+<pre><code class="language-c">void loop() {
+
+    // All 2 seconds
+    if ((kilo_ticks %64) == 0){
+
+
+        //check if I could be reanimated
+        if(state == DEAD) {
+
+            if(neighbor_living == 3) {
+                state = LIVING;
+                set_color (RGB(0,3,0)); //green
+            }
+        }
+        //check if if the cellule must die
+        else {
+
+            if((neighbor_living != 2) &amp;&amp; (neighbor_living != 3)) {
+
+                state = DEAD;
+                set_color (RGB(3,0,0)); //red
+            }
+        }
+        //clear counter and array
+        neighbor_living = 0;
+        neighbor_dead = 0;
+
+        while(!isEmpty()) {
+            deleteFirst();
+        }
+    }
+
+}
+</code></pre>
+<p>You may have already noticed but but neighbor_dead is useless.
+It was kept in the program to help with hypothetical future addons but you can remove it if you don't use it.</p>
+<h3 id="communication">Communication</h3>
+<p>The <code>message_tx()</code> is relativly classic :</p>
+<pre><code class="language-c">message_t* message_tx(){
+    message.type = NORMAL;
+    message.data[0] = state;
+    message.data[1] = id;
+    message.crc = message_crc(&amp;message);
+    return &amp;message;
+</code></pre>
+<p>The <code>message_rx()</code> function is  a bit more unusual. It simply check if the Id isn't already in the linked list and if no, it add it in the list and increament the neighbor_dead ou neighbor_living counter.</p>
+<pre><code class="language-c">void message_rx(message_t *msg, distance_measurement_t *dist) {
+
+    struct node *element = find(msg-&gt;data[1]);
+    //check if the id wasn't already in the list
+    if(!element){
+
+        insertFirst(msg-&gt;data[1]);
+        // add a dead cellule in the counter
+        if(msg-&gt;data[0] == DEAD) {
+            neighbor_dead += 1;
+        }
+        //add a living cellule in the counter
+        else if(msg-&gt;data[0] == LIVING) {
+            neighbor_living += 1;
+        }   
+    }
+}
+
+</code></pre>
+<h3 id="put-it-all-together">Put it all together</h3>
+<p>```c
+ int main(){
+    kilo_init();</p>
+<pre><code>kilo_message_rx = message_rx;
+
+kilo_message_tx = message_tx;
+
+kilo_start(setup, loop);
+
+return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+## Dead's  program
+
+    The two program are very similar, the only difference his in the ´setup()´ fonction.
+
+```c
+void setup() {
+
+    //set state
+    state = DEAD;
+    neighbor_dead = 0;
+    neighbor_living = 0;
+    id = kilo_uid;
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state;
+    message.data[1] = id;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(3,0,0)); //red
+
+
+}
+</code></pre>
 <hr />
 <h2 id="we-are-done">We are done !</h2>
-<p>You can now admire your kilobot burn the tarmac ! Well, it might not be that impressive. The kilobots were probably not designed as racing machines. But fair enough, it at least made you learn the basics of programming for kilobots !</p>
+<p>You can now play with your kilobot at the game of life! You can now modify their positions to find all th e secret of this game! Just, pay attention at the distance between the kilobot. It will be stupid that the distance between two of them would to big to maintain the communication.</p>
 <hr />
               
             </div>

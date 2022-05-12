@@ -92,11 +92,35 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#working">Working</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#schema">Schema</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#what-you-will-learn">What you will learn</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#defining-macros-global-variables-and-switch">Defining macros, global variables and Switch</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#we-are-done">We are done !</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nord-program">NORD program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-fonction">The setup() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-fonction">The loop() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sud-porgram">SUD porgram</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-fonction_1">The setup() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-fonction_1">The loop() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication_1">Communication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#put-it-together">Put it together!</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion!</a>
     </li>
     </ul>
                   </li>
@@ -140,7 +164,7 @@
 <p><a href="../../resources/sources/magnet.zip"><em>source code of this tutorial</em></a></p>
 <hr />
 <h2 id="context">Context</h2>
-<p>When you approach two opposite poloarity of a magnet an attraction between them is created.
+<p>When you approach two opposite polarity of a magnet an attraction between them is created.
 When you approach the same polarity of a magnet, they pushes each other away.
 This is cause by what we can call : "magnetic force".</p>
 <hr />
@@ -154,18 +178,412 @@ If it is the same, it approaches.
 If it is the opposite, he move away.
 The concept are simple, but the project was a failure.</p>
 <hr />
-<h2 id="schema">Schema</h2>
-<hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>Basic template for a kilobot program</li>
-<li>How to make the kilobot flash color with <code>set_color()</code></li>
-<li>How to make the kilobot move with <code>set_motors()</code></li>
+<li>What are the limitation of the kilobot.</li>
+<li>How to use a Switch </li>
 </ul>
 <hr />
+<h3 id="defining-macros-global-variables-and-switch">Defining macros, global variables and Switch</h3>
+<p>This part of the program is the same for the both.
+The program define NORD and SUD who are the type of the kilobot.
+The program define STOP, FORWARD, LEFT and RIGHT who are the direction to take.</p>
+<pre><code class="language-c">#include &lt;kilolib.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+#define SUD 0
+#define NORD 1
+
+
+#define STOP 0
+#define FORWARD 1
+#define LEFT 2
+#define RIGHT 3
+
+</code></pre>
+<ul>
+<li>The "dist_1,2,3,4,5" variables are used to store aa fix distance.</li>
+<li>power store the fraction of the maximal power to move.</li>
+<li>type  store the type of the kilobot ( SUD or NORD).</li>
+<li>state  store the state of the kilobot (STOP, FORWARD, LEFT and RIGHT ).</li>
+<li>minimal_distance store the minimam distance between two kilobot.</li>
+<li>old_distance store the old distance between two loop.</li>
+<li>current_distance store the current distance between two kilobot.</li>
+<li>new_message use to check if the distace must be recalculate.</li>
+<li>message_t store the message.</li>
+<li>distance_measurement_t store the distance between two kilobot.</li>
+</ul>
+<pre><code class="language-c">
+int dist_1 = 1000; 
+int dist_2 = 800; 
+int dist_3 = 500; 
+int dist_4 = 250; 
+int dist_5 = 100; 
+float power;
+
+
+int type;
+int state;
+int minimal_distance = 10;
+
+
+
+int old_distance;
+int current_distance;
+int new_message;
+
+message_t message;
+distance_measurement_t dist;
+</code></pre>
+<p><code>set_motion()</code> is a fonction who use a Switch to define where the power must be use by the motor.</p>
+<pre><code class="language-c">void set_motion(int new_motion){
+    if (power != 0) {
+        switch(new_motion){
+        case STOP:
+            set_motors(0,0);
+            break;
+        case FORWARD:
+            spinup_motors();
+            set_motors(255.0 * power,255.0 *power);
+            break;
+        case RIGHT:
+            spinup_motors();
+            set_motors(0,255.0 * power);
+            break;
+        case LEFT:
+            spinup_motors();
+            set_motors(255.0 * power,0);
+            break;
+        }
+    }
+}
+
+</code></pre>
+<p>We use set_motion in three other fonction to define in witch direction the kilobot must turn and  how many time it has to do it.
+But as you can see, there is not back() fonction.
+The cause is simple, the kilobot can not go back!</p>
+<pre><code class="language-c">void right(){
+    set_motion(RIGHT);
+    delay(500);
+    set_motion(FORWARD);
+    delay(100);
+    set_motion(STOP);
+
+}
+
+void forward(){
+    set_motion(FORWARD);
+    delay(100);
+    set_motion(STOP);
+
+
+}
+
+void left(){
+    set_motion(LEFT);
+    delay(500);
+    set_motion(FORWARD);
+    delay(100);
+    set_motion(STOP);
+
+}
+</code></pre>
+<h2 id="nord-program">NORD program</h2>
+<h3 id="the-setup-fonction">The <code>setup()</code> fonction</h3>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = NORD;
+
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+
+    set_color (RGB(3,0,0));
+
+
+    current_distance = 5;
+    new_message = 0;
+    old_distance= 5;
+    power = 0 ;
+    type = 5;
+
+
+
+}
+
+</code></pre>
+<h3 id="the-loop-fonction">The <code>loop()</code> fonction</h3>
+<p>Since the kilobot can not go back, to simulate the polarity between two or more magnet, we need to turn the kilobot on himself and go forward in the direction wanted.
+However, the kilobot have not the capacity to know in witch direction his the kilobot with whom it communicates.
+Therefore, it's impossible to determine in which derection the kilobot at to go!
+To try to solve this probleme, the kilobot will try to find in wich direction they need to go by trying.
+For exemple, if the kilobot his attract by his partner, it will go forward.
+If the distance between the two kilobot his bigger than before, it use right() .
+If the distance between the two kilobot his smaller than before, it use left() .
+The loop continue until the kilobot reach the minimal distance.
+This solution could work in most situations if his attractor was fix but it's not the case.
+And since the both kilobot try to get closer to each oser, the most of the time they simply made a "dance" until they are out of range for the communication.</p>
+<p>The probleme is the same when it's two kilobot how try to repulse each other.</p>
+<pre><code class="language-c">void loop() {
+    //check if the current distance must be recalculated
+     if (new_message) {
+         new_message = 0;
+         //current_distance = estimate_distance(&amp;message);
+     }
+
+
+
+     if (type == SUD){
+
+        //attract
+        if (current_distance &lt;= minimal_distance) {
+            set_motion(STOP);
+        }
+        //turn right and go to the kilobot
+        else if (current_distance &gt; old_distance) {
+             set_motion(LEFT);
+             delay(100);
+             set_motion(FORWARD);
+             delay(100);
+             set_motion(STOP);
+        }
+        //go to the kilobot
+        else if (current_distance == old_distance){
+             set_motion(FORWARD);
+             delay(100);
+             set_motion(STOP);
+        }
+        //turn right and go to the kilobot
+        else{
+             set_motion(RIGHT);
+             delay(100);
+             set_motion(FORWARD);
+             delay(100);
+             set_motion(STOP);
+        }
+
+     }
+     else if (type == NORD) {
+         //repel
+
+        //turn right and go away
+        if (current_distance &lt; old_distance) {
+            set_motion(RIGHT);
+            delay(100);
+            set_motion(FORWARD);
+            delay(100);
+            set_motion(STOP);
+
+        }
+        //go away
+        else if (current_distance == old_distance){
+            set_motion(FORWARD);
+            delay(100);
+            set_motion(STOP);
+        }
+        //turn left and go away
+        else{
+            set_motion(LEFT);
+            delay(100);
+            set_motion(FORWARD);
+            delay(100);
+            set_motion(STOP);
+        }
+
+     }
+     type= 5 ;
+}
+</code></pre>
+<h3 id="communication">Communication</h3>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    return &amp;message;
+}
+</code></pre>
+<p>To simulate the fact that when two magnet get closer the power of attraction or repulsion grow i decied to use a notion of power.
+More the two magnet are close, more the power his strong and lesser both magnet are close, more the power is weak.
+However, it is difficult to see if there is a real impact on the kilobot speed because of how the emulator simule it.</p>
+<pre><code class="language-c">// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    //change the polarity of kilobot
+
+    new_message = 1;
+    type = msg-&gt;data[0];
+    current_distance = estimate_distance(dist);
+
+    if(current_distance &lt; dist_1){
+        power = 1.0/5;
+    }
+    else if (current_distance &gt;= dist_1 &amp;&amp; current_distance &lt; dist_2) {
+        power = 2.0/5;
+    }
+    else if (current_distance &gt;= dist_2 &amp;&amp; current_distance &lt; dist_3) {
+        power = 3.0/5;
+    }
+    else if (current_distance &gt;= dist_3 &amp;&amp; current_distance &lt; dist_4) {
+        power = 4.0/5;
+    }
+    else if (current_distance &gt;= dist_4 &amp;&amp; current_distance &lt; dist_5) {
+        power = 1.0;
+    }
+
+}
+</code></pre>
+<h2 id="sud-porgram">SUD porgram</h2>
+<h3 id="the-setup-fonction_1">The <code>setup()</code> fonction</h3>
+<pre><code class="language-c">void setup() {
+
+
+    //set the state
+    state = SUD;
+
+
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = state;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    if (state == SUD){
+        set_color (RGB(0,3,0));
+    }
+    else {
+        set_color(RGB(3,0,0));
+    }
+
+    current_distance = 5;
+    new_message = 0;
+    old_distance= 5;
+    power = 0 ;
+    type = 5;
+
+
+
+}
+</code></pre>
+<h3 id="the-loop-fonction_1">The <code>loop()</code> fonction</h3>
+<p>The action executed are inverce compared with NORD.c</p>
+<pre><code class="language-c">void loop() {
+    //check if the current distance must be recalculated
+     if (new_message) {
+         new_message = 0;
+         //current_distance = estimate_distance(&amp;message);
+     }
+
+
+
+     if (type == SUD){
+         //repel
+         if (state == SUD) {
+            // turn right and go away
+            if (current_distance &lt; old_distance) {
+                left();
+
+            }
+            // go away
+            else if (current_distance == old_distance ){
+                forward();
+            }
+
+
+            //turn left and go away
+            else {
+                right();
+            }
+
+         }
+
+     }
+     else if (type == NORD) {
+
+         //attract
+             if (current_distance &lt;= minimal_distance) {
+                set_motion(STOP);
+             }
+             //turn right and go to the kilobot
+             else if (current_distance &gt; old_distance) {
+                 set_motion(LEFT);
+                 delay(100);
+                 set_motion(FORWARD);
+                 delay(100);
+                 set_motion(STOP);
+              }
+              //go to the kilobot
+              else if (current_distance == old_distance){
+                 set_motion(FORWARD);
+                 delay(100);
+                 set_motion(STOP);
+              }
+              //turn right and go to the kilobot
+              else{
+                 set_motion(RIGHT);
+                 delay(100);
+                 set_motion(FORWARD);
+                 delay(100);
+                 set_motion(STOP);
+              }
+
+     }
+     type= 5 ;
+}
+
+</code></pre>
+<h3 id="communication_1">Communication</h3>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    return &amp;message;
+}
+// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    //change the polarity of kilobot
+
+    new_message = 1;
+    type = msg-&gt;data[0];
+    current_distance = estimate_distance(dist);
+
+    if(current_distance &lt; dist_1){
+        power = 1.0/5;
+    }
+    else if (current_distance &gt;= dist_1 &amp;&amp; current_distance &lt; dist_2) {
+        power = 2.0/5;
+    }
+    else if (current_distance &gt;= dist_2 &amp;&amp; current_distance &lt; dist_3) {
+        power = 3.0/5;
+    }
+    else if (current_distance &gt;= dist_3 &amp;&amp; current_distance &lt; dist_4) {
+        power = 4.0/5;
+    }
+    else if (current_distance &gt;= dist_4 &amp;&amp; current_distance &lt; dist_5) {
+        power = 1.0;
+    }
+
+}
+</code></pre>
+<h2 id="put-it-together">Put it together!</h2>
+<p>There is no defference in the main fonction for both program</p>
+<pre><code class="language-c">int main(){
+    kilo_init();
+
+    kilo_message_rx = message_rx;
+
+    kilo_message_tx = message_tx;
+
+    kilo_start(setup, loop);
+
+    return 0;
+}
+</code></pre>
 <hr />
-<h2 id="we-are-done">We are done !</h2>
-<p>You can now admire your kilobot burn the tarmac ! Well, it might not be that impressive. The kilobots were probably not designed as racing machines. But fair enough, it at least made you learn the basics of programming for kilobots !</p>
+<h2 id="conclusion">Conclusion!</h2>
 <hr />
               
             </div>

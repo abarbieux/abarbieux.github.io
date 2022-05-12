@@ -94,9 +94,29 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#working">Working</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#schema">Schema</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#what-you-will-learn">What you will learn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wall-program">WALL program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#defining-macros-and-global-variables">Defining macros and global variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-function">The setup() function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-other-fonction">The other fonction</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hunter-and-ball-program">Hunter and Ball program</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#defining-macros-and-global-variables_1">Defining macros and global variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-setup-fonction">The setup() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-fonction">The loop() fonction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#we-are-done">We are done !</a>
     </li>
@@ -155,15 +175,221 @@
 <li>The kilobots "wall" that symbolise the resident. Theu do nothing except send a message with their type to the kilobot ball and hunter.</li>
 </ul>
 <hr />
-<h2 id="schema">Schema</h2>
-<hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>Basic template for a kilobot program</li>
-<li>How to make the kilobot flash color with <code>set_color()</code></li>
-<li>How to make the kilobot move with <code>set_motors()</code></li>
+<li>How to solve a probleme in real life with the kilobot.</li>
 </ul>
 <hr />
+<h2 id="wall-program">WALL program</h2>
+<h3 id="defining-macros-and-global-variables">Defining macros and global variables</h3>
+<p>There are 3 macros defined who represente the type of the kilobot and one variable to store the message.</p>
+<pre><code class="language-c">
+#define BALLE 0
+#define HUNTER 1
+#define LIMIT 2
+
+message_t message;
+
+</code></pre>
+<h3 id="the-setup-function">The <code>setup()</code> function</h3>
+<p>The kilobot WALL are only usefull to define the paly area.
+So their only goal is to warn the other kilobot that they have arrived at the end of play area.</p>
+<pre><code class="language-c">
+void setup() {
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = LIMIT;
+    message.crc = message_crc(&amp;message);
+
+    //set the light
+    set_color (RGB(0,0,0));
+
+}
+</code></pre>
+<h3 id="the-other-fonction">The other fonction</h3>
+<pre><code class="language-c">void loop() {
+}
+
+//send message
+message_t* message_tx(){
+    return &amp;message;
+}
+//check message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+}
+
+int main(){
+    kilo_init();
+
+    kilo_message_rx = message_rx;
+
+    kilo_message_tx = message_tx;
+
+    kilo_start(setup, loop);
+
+    return 0;
+}
+</code></pre>
+<h2 id="hunter-and-ball-program">Hunter and Ball program</h2>
+<h3 id="defining-macros-and-global-variables_1">Defining macros and global variables</h3>
+<p>BALLE, HUNTER,LIMIT are used tu define the type of the kilobot.
+CATCH, WALL, RUN are used to defined the statd of the kilobot.
+Reday and NOTREADY are used to defniend if the kilobot is redy or not.</p>
+<pre><code class="language-c">#define BALLE 0
+#define HUNTER 1
+#define LIMIT 2
+
+#define CATCH 0
+#define WALL 1
+#define RUN 2
+
+#define READY 0
+#define NOTREADY 1
+</code></pre>
+<p>This varibles are used to :</p>
+<ul>
+<li>store the state</li>
+<li>store if redy or not</li>
+<li>had the distance when the ball is considered catch</li>
+<li>had the delay to go straight on 1 cm (irl kilobot)</li>
+<li>had the delay to make a half turn on himself ( irl kilobot)</li>
+<li>store the delay to subtract or add</li>
+<li>store the message</li>
+</ul>
+<pre><code class="language-c">int state;
+int ready;
+int catch_distance = 100;
+int straightSpeedCalibrator = 1000; // Delay in milliseconds to go straight on 1cm (for irl kilobot)
+int turningSpeedCalibrator = 2500; // Delay in milliseconds to make 1/2 turn around (for irl kilobot)
+int Thedelay;
+message_t message;
+
+</code></pre>
+<h3 id="the-setup-fonction">The <code>setup()</code> fonction</h3>
+<p>The difference between Hunter and Ball is that "message.data[0] = Hunter" is equal at "BALL" in Ball.</p>
+<pre><code class="language-c">
+void setup() {
+    //set de random seed
+    rand_seed(1);
+    //set the state
+    state = RUN;
+    ready = READY;
+
+    //set the message to send
+    message.type = NORMAL;
+    message.data[0] = HUNTER;
+    message.crc = message_crc(&amp;message);
+
+    //set the light and movement
+    set_color (RGB(3,0,0));
+
+}
+
+</code></pre>
+<h3 id="the-loop-fonction">The <code>loop()</code> fonction</h3>
+<pre><code class="language-c">
+In the loop fonction the kilobot will go forward until it encounters an obstacle.
+If it is the Hunter or the Ball, it is the end of the game.
+But if it is a wall, the kilobot wiil make a maneuver to turn on itself randomly and return to the circle.
+
+
+void loop() {
+
+
+    if (state == RUN){
+        // waiting  hunter get away
+        if (ready == NOTREADY) {
+            set_motors(kilo_straight_left, kilo_straight_right);
+            delay(straightSpeedCalibrator);
+            ready = READY;
+        }
+        set_color (RGB(3,0,0)); //red
+        //go straight
+        spinup_motors();
+        set_motors(kilo_straight_left, kilo_straight_right);
+
+    }
+
+
+    //end the simulation, the balle is catch
+    else if (state == CATCH) {
+        ready = NOTREADY;
+        set_color (RGB(0,3,0));
+        set_motors(0,0);
+    }
+    // use to not apply a new message during the rotation
+    else if (state == WALL){
+        ready = NOTREADY;
+
+        //choice a random direction in the circle
+        int rotate = rand_soft() %501 ; //0 to 500
+
+        int more_less = rand_soft() %2; //0 or 1
+        //make an &quot;+&quot;
+        if (more_less == 1){
+            Thedelay = (turningSpeedCalibrator + rotate);
+        }
+        //make a &quot;-&quot;
+        else{
+            Thedelay = (turningSpeedCalibrator - rotate);
+        }
+        //change state to RUN again and turn the hunter
+        more_less = rand_soft() %2; //0 or 1
+        spinup_motors();
+        //turn right or left
+        if (more_less == 1){
+            set_motors(kilo_turn_left, 0);
+        }
+        else{
+            set_motors(kilo_turn_right, 0);
+        }
+        delay(Thedelay);
+        state = RUN;
+
+
+    }
+
+}
+</code></pre>
+<h3 id="communication">Communication</h3>
+<p>If receive a message from the Ball, end of the game
+Else if receive a message from a wall, pass the state to wall to make a maneuver.
+Same logic for the Hunter except it has to  receive a message from the ball.</p>
+<pre><code class="language-c">//send a message
+message_t* message_tx(){
+    return &amp;message;
+}
+// check a message
+void message_rx(message_t *msg, distance_measurement_t *dist) {
+    if (estimate_distance(dist) &lt; (catch_distance) ){
+
+        if (msg-&gt;data[0] == BALLE){
+            state = CATCH;
+        }
+        else if (state == RUN &amp;&amp; ready == READY) {
+            if (msg-&gt;data[0] == LIMIT){
+                state = WALL;
+            }
+        }   
+    }
+}
+
+## Put it together!
+
+
+int main(){
+    kilo_init();
+
+    kilo_message_rx = message_rx;
+
+    kilo_message_tx = message_tx;
+
+    kilo_start(setup, loop);
+
+    return 0;
+}
+</code></pre>
 <hr />
 <h2 id="we-are-done">We are done !</h2>
 <p>You can now admire your kilobot burn the tarmac ! Well, it might not be that impressive. The kilobots were probably not designed as racing machines. But fair enough, it at least made you learn the basics of programming for kilobots !</p>
