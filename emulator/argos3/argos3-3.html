@@ -46,19 +46,19 @@
               </ul>
               <p class="caption"><span class="caption-text">Guides</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/guide-index.html">Guides summary (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/guide-index.html">Guides summary </a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/getting-started.html">Getting started (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/getting-started.html">Getting started </a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/coding-for-kilobots.html">Coding for kilobots</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/compile-your-code.html">Compile your code (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/compile-your-code.html">Compile your code </a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/transfer-and-run-your-program.html">Transfer and run your program</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/use-the-debug-feature.html">Use the debug feature</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/use-an-emulator.html">Use an Emulator ( added by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/use-an-emulator.html">Use an Emulator </a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Tutorials</span></p>
@@ -76,7 +76,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tuto5.html">Rush Hour</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Argos3 ( added by Arthur)</span></p>
+              <p class="caption"><span class="caption-text">Argos3</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="argos3-index.html">Argos3 summary</a>
                   </li>
@@ -108,7 +108,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#sud-porgram">SUD porgram</a>
+    <li class="toctree-l2"><a class="reference internal" href="#sud-program">SUD program</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#the-setup-fonction_1">The setup() fonction</a>
     </li>
@@ -127,7 +127,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="argos3-4.html">Catch The Ball</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Kilombo (added by Arthur)</span></p>
+              <p class="caption"><span class="caption-text">Kilombo </span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../kilombo/kilombo-index.html">Kilombo summary</a>
                   </li>
@@ -150,7 +150,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Argos3 ( added by Arthur) &raquo;</li><li>Magnet</li>
+          <li>Argos3 &raquo;</li><li>Magnet</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -164,30 +164,30 @@
 <p><a href="../../resources/sources/magnet.zip"><em>source code of this tutorial</em></a></p>
 <hr />
 <h2 id="context">Context</h2>
-<p>When you approach two opposite polarity of a magnet an attraction between them is created.
-When you approach the same polarity of a magnet, they pushes each other away.
-This is cause by what we can call : "magnetic force".</p>
+<p>When you approach two opposite polarities of a magnet an attraction between them is created.
+When you approach the same polarity of a magnet, they push each other away.
+This is caused by what we can call : "magnetic force".</p>
 <hr />
 <h2 id="goal">Goal</h2>
 <p>The goal of this project was to simulate the magnetic force of the magnets .</p>
 <hr />
 <h2 id="working">Working</h2>
-<p>This project is a bit special, i was suppose tu work by assigning at each kilobot a polarity : North or Soud.
-If kilobot receive a message from a kilobot, he check his polority.
+<p>This project is a bit special, i was supposed to work by assigning at each kilobot a polarity : North or South.
+If a kilobot receives a message from a kilobot, he checks his polority.
 If it is the same, it approaches.
-If it is the opposite, he move away.
-The concept are simple, but the project was a failure.</p>
+If it is the opposite, he moves away.
+The concept is simple, but the project was a failure.</p>
 <hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>What are the limitation of the kilobot.</li>
-<li>How to use a Switch </li>
+<li>What are the limitations of the kilobot</li>
+<li>How to use a Switch</li>
 </ul>
 <hr />
 <h3 id="defining-macros-global-variables-and-switch">Defining macros, global variables and Switch</h3>
-<p>This part of the program is the same for the both.
-The program define NORD and SUD who are the type of the kilobot.
-The program define STOP, FORWARD, LEFT and RIGHT who are the direction to take.</p>
+<p>This part of the program is the same for both.
+The program defines NORD and SUD who are the type of the kilobot.
+The program defines STOP, FORWARD, LEFT and RIGHT which are the directions to take.</p>
 <pre><code class="language-c">#include &lt;kilolib.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;stdio.h&gt;
@@ -203,23 +203,23 @@ The program define STOP, FORWARD, LEFT and RIGHT who are the direction to take.<
 
 </code></pre>
 <ul>
-<li>The "dist_1,2,3,4,5" variables are used to store aa fix distance.</li>
-<li>power store the fraction of the maximal power to move.</li>
+<li>The "dist_1,2,3,4,5" variables are used to store a fixed distance.</li>
+<li>power stores the fraction of the maximal power to move.</li>
 <li>type  store the type of the kilobot ( SUD or NORD).</li>
 <li>state  store the state of the kilobot (STOP, FORWARD, LEFT and RIGHT ).</li>
-<li>minimal_distance store the minimam distance between two kilobot.</li>
-<li>old_distance store the old distance between two loop.</li>
-<li>current_distance store the current distance between two kilobot.</li>
-<li>new_message use to check if the distace must be recalculate.</li>
+<li>minimal_distance stores the minimum distance between two kilobot.</li>
+<li>old_distance stores the old distance between two loops.</li>
+<li>current_distance stores the current distance between two kilobot.</li>
+<li>new_message used to check if the distance must be recalculated.</li>
 <li>message_t store the message.</li>
-<li>distance_measurement_t store the distance between two kilobot.</li>
+<li>distance_measurement_t stores the distance between two kilobot.</li>
 </ul>
 <pre><code class="language-c">
-int dist_1 = 1000; 
-int dist_2 = 800; 
-int dist_3 = 500; 
-int dist_4 = 250; 
-int dist_5 = 100; 
+int dist_1 = 1000;
+int dist_2 = 800;
+int dist_3 = 500;
+int dist_4 = 250;
+int dist_5 = 100;
 float power;
 
 
@@ -236,7 +236,7 @@ int new_message;
 message_t message;
 distance_measurement_t dist;
 </code></pre>
-<p><code>set_motion()</code> is a fonction who use a Switch to define where the power must be use by the motor.</p>
+<p><code>set_motion()</code> is a function which uses a Switch to define where the power must be used by the motor.</p>
 <pre><code class="language-c">void set_motion(int new_motion){
     if (power != 0) {
         switch(new_motion){
@@ -260,8 +260,8 @@ distance_measurement_t dist;
 }
 
 </code></pre>
-<p>We use set_motion in three other fonction to define in witch direction the kilobot must turn and  how many time it has to do it.
-But as you can see, there is not back() fonction.
+<p>We use set_motion in three other fonction to define in which direction the kilobot must turn and  how many times it has to do it.
+But as you can see, there is no back() fonction.
 The cause is simple, the kilobot can not go back!</p>
 <pre><code class="language-c">void right(){
     set_motion(RIGHT);
@@ -321,17 +321,17 @@ void left(){
 
 </code></pre>
 <h3 id="the-loop-fonction">The <code>loop()</code> fonction</h3>
-<p>Since the kilobot can not go back, to simulate the polarity between two or more magnet, we need to turn the kilobot on himself and go forward in the direction wanted.
-However, the kilobot have not the capacity to know in witch direction his the kilobot with whom it communicates.
-Therefore, it's impossible to determine in which derection the kilobot at to go!
-To try to solve this probleme, the kilobot will try to find in wich direction they need to go by trying.
-For exemple, if the kilobot his attract by his partner, it will go forward.
-If the distance between the two kilobot his bigger than before, it use right() .
-If the distance between the two kilobot his smaller than before, it use left() .
-The loop continue until the kilobot reach the minimal distance.
-This solution could work in most situations if his attractor was fix but it's not the case.
-And since the both kilobot try to get closer to each oser, the most of the time they simply made a "dance" until they are out of range for the communication.</p>
-<p>The probleme is the same when it's two kilobot how try to repulse each other.</p>
+<p>Since the kilobot can not go back, to simulate the polarity between two or more magnets, we need to turn the kilobot on itself and go forward in the direction wanted.
+However, the kilobot does not have the capacity to know in which direction is the kilobot with whom it communicates.
+Therefore, it's impossible to determine in which direction the kilobot is to go!
+To try to solve this problem, the kilobot will try to find in which direction they need to go by trying.
+For example, if the kilobot is attracted to his partner, it will go forward.
+If the distance between the two kilobot is bigger than before, it uses right() .
+If the distance between the two kilobot is smaller than before, it uses left() .
+The loop continues until the kilobot reaches the minimum distance.
+This solution could work in most situations if his attractor was fixed but it's not the case.
+And since both kilobot try to get closer to each other, most of the time they simply make a "dance" until they are out of range for communication.</p>
+<p>The problem is the same when it's two kilobot trying to repulse each other.</p>
 <pre><code class="language-c">void loop() {
     //check if the current distance must be recalculated
      if (new_message) {
@@ -408,7 +408,7 @@ message_t* message_tx(){
     return &amp;message;
 }
 </code></pre>
-<p>To simulate the fact that when two magnet get closer the power of attraction or repulsion grow i decied to use a notion of power.
+<p>To simulate the fact that when two magnets get closer the power of attraction or repulsion grows, I decided to use a notion of power.
 More the two magnet are close, more the power his strong and lesser both magnet are close, more the power is weak.
 However, it is difficult to see if there is a real impact on the kilobot speed because of how the emulator simule it.</p>
 <pre><code class="language-c">// check a message
@@ -437,7 +437,7 @@ void message_rx(message_t *msg, distance_measurement_t *dist) {
 
 }
 </code></pre>
-<h2 id="sud-porgram">SUD porgram</h2>
+<h2 id="sud-program">SUD program</h2>
 <h3 id="the-setup-fonction_1">The <code>setup()</code> fonction</h3>
 <pre><code class="language-c">void setup() {
 
@@ -569,7 +569,7 @@ void message_rx(message_t *msg, distance_measurement_t *dist) {
 }
 </code></pre>
 <h2 id="put-it-together">Put it together!</h2>
-<p>There is no defference in the main fonction for both program</p>
+<p>There is no difference in the main function for both program</p>
 <pre><code class="language-c">int main(){
     kilo_init();
 
@@ -584,6 +584,7 @@ void message_rx(message_t *msg, distance_measurement_t *dist) {
 </code></pre>
 <hr />
 <h2 id="conclusion">Conclusion!</h2>
+<p>Now that you learn the mistakes made in this project, you should be able to avoid them.Therefore when you will start your own project don’t forget to take into account this limitation.</p>
 <hr />
               
             </div>

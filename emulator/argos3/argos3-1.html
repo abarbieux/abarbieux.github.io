@@ -46,19 +46,19 @@
               </ul>
               <p class="caption"><span class="caption-text">Guides</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/guide-index.html">Guides summary (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/guide-index.html">Guides summary </a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/getting-started.html">Getting started (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/getting-started.html">Getting started </a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/coding-for-kilobots.html">Coding for kilobots</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/compile-your-code.html">Compile your code (modified by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/compile-your-code.html">Compile your code </a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/transfer-and-run-your-program.html">Transfer and run your program</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../guides/use-the-debug-feature.html">Use the debug feature</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../guides/use-an-emulator.html">Use an Emulator ( added by Arthur)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../guides/use-an-emulator.html">Use an Emulator </a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Tutorials</span></p>
@@ -76,7 +76,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tuto5.html">Rush Hour</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Argos3 ( added by Arthur)</span></p>
+              <p class="caption"><span class="caption-text">Argos3</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="argos3-index.html">Argos3 summary</a>
                   </li>
@@ -96,7 +96,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#the-setup-function">The setup() function</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#the-loop-focntion">The `loop() focntion</a>
+    <li class="toctree-l3"><a class="reference internal" href="#the-loop-function">The `loop() function</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#communication">Communication</a>
     </li>
@@ -115,7 +115,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="argos3-4.html">Catch The Ball</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Kilombo (added by Arthur)</span></p>
+              <p class="caption"><span class="caption-text">Kilombo </span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../kilombo/kilombo-index.html">Kilombo summary</a>
                   </li>
@@ -138,7 +138,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Argos3 ( added by Arthur) &raquo;</li><li>Game of life</li>
+          <li>Argos3 &raquo;</li><li>Game of life</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -153,25 +153,22 @@
 <hr />
 <h2 id="context">Context</h2>
 <p>The Game of Life is a cellular automaton devised by John Horton Conway. It is a simple game where we can choose the initial state of each "cell" in the grid board ( living or dead) and see how they evolve.</p>
-<p>The rule are simple, if a living cell is too isolated  then it dies the next turn. If it is  surrounded by 2 or 3 neighbors then it remains alive, but what if it is surrounded by more it dies to the next turn.</p>
-<p>A cell can also become a live cell if a dead cell is surrounded by three living cells then it becomes alive in the next turn.</p>
+<p>The rules are simple, if a living cell is too isolated   it will die the following turn. If it is  surrounded by 2 or 3 neighbors it remains alive, but if it is surrounded by more it will die on the following turn.</p>
+<p>A cell can become a living one if it is surrounded by three other living cells</p>
 <hr />
 <h2 id="goal">Goal</h2>
 <p>The goal of this project was to recreate the Game of Life with the kilobots but without the grid limitation.</p>
 <hr />
 <h2 id="working">Working</h2>
-<p>The kilobots are place in a large area. They begins with the state "dead" or "living". The majority of the time they send a message with their statut. Next, after a certain number of seconds they update their statut following the rules of the Game of life.</p>
+<p>The kilobots are placed in a large area. They begin in the state "dead" or "living". The majority of the time they send a message with their status. Next, after a certain few seconds they update their status following the rules of the Game of life.</p>
 <hr />
 <h2 id="what-you-will-learn">What you will learn</h2>
 <ul>
-<li>Use a linked list with the kilobots</li>
+<li>Using a linked list with the kilobots</li>
 </ul>
 <hr />
 <h2 id="lifes-program">Life's  program</h2>
 <h3 id="defining-macros-global-variables-and-linked-list">Defining macros, global variables and linked list</h3>
-<p>Our program are defined four macros.</p>
-<p>The two first are used to define the state of the kilobot.
-The last two are used to define if the kilobot is ready or not to send his message.</p>
 <pre><code class="language-c">#define DEAD 0
 #define LIVING 1
 
@@ -179,25 +176,24 @@ The last two are used to define if the kilobot is ready or not to send his messa
 #define READY 1
 #define NOTREADY 0
 </code></pre>
-<p>The 5 globals variables are used to :</p>
+<p>The 5 globals variables are used to contain:</p>
 <ul>
-<li>Contain the state of the kilobot.</li>
-<li>Contain the number of life kilobot neighboring.</li>
-<li>Contain the number of  dead kilobot neighboring.</li>
-<li>Contain the unique id of the kilobot.</li>
-<li>Storing message.</li>
+<li>The state of the kilobot.</li>
+<li>The number of life kilobot neighboring.</li>
+<li>The number of  dead kilobot neighboring.</li>
+<li>The unique id of the kilobot.</li>
+<li>The message.</li>
 </ul>
 <pre><code class="language-c">int state;
 int neighbor_living;
 int neighbor_dead;
 int id;
-
 message_t message;
 </code></pre>
-<p>We will see later that we need to stock divers data for each kilobot neighboring.
-But it is not a easy task  since we the number of neigbhor is changeable and the number of element in a list must be define at the initialization in C.
-This is why we used a linked list to bypass the siez limitation of a list.</p>
-<p>Below is how the linked list is implemented : </p>
+<p>You will see later that the program needs to stock diverse data for each neighboring kilobot .
+But it is not an easy task  since the number of neighbors is changeable and the number of elements in a list must be defined at the initialization in C.
+This is why I used a linked list to bypass the size limitation of a list.</p>
+<p>Below is the linked list implementation :</p>
 <pre><code class="language-c">struct node {
     int key;
     struct node *next;
@@ -215,7 +211,7 @@ int length() {
     struct node *current;
 
     for ( current = head; current != NULL; current = current-&gt;next){
-        length++;   
+        length++;  
      }
 
     return length;
@@ -260,7 +256,7 @@ struct node* deleteFirst() {
    //save reference to first link
    struct node *tempLink = head;
 
-   //mark next to first link as first 
+   //mark next to first link as first
    head = head-&gt;next;
 
    //return the deleted link
@@ -320,10 +316,10 @@ void insertFirst(int key) {
    head = link;
 }
 </code></pre>
-<p>Some fonction implemented are don't use in the program but there are still in here for future addon.</p>
-<p>If you don't undestand hwo work a linked list <a href="https://www.tutorialspoint.com/data_structures_algorithms/linked_list_algorithms.htm">here</a> is a website with more explanation.</p>
+<p>Some implemented functions are not use by the program but they are still in there for future addons.</p>
+<p>If you don't understand how a linked list works go to doc <a href="https://www.tutorialspoint.com/data_structures_algorithms/linked_list_algorithms.htm">here</a> is a website with more explanation.</p>
 <h3 id="the-setup-function">The <code>setup()</code> function</h3>
-<p>In the <code>setup()</code> fonction are defined all the global variable as well as the structure of the message sent and the color of the kilobot.</p>
+<p>In the <code>setup()</code> function all the global variables as well as the structure of the message sent and the color of the kilobot are defined in the setup function.</p>
 <pre><code class="language-c">void setup() {
 
     //set state
@@ -344,8 +340,8 @@ void insertFirst(int key) {
 
 }
 </code></pre>
-<h3 id="the-loop-focntion">The <code>`loop()</code> focntion</h3>
-<p>Since <code>`kilo_tocks</code> is increamented 32 times per second, with modulo 64,every 2 seconds the program in the loop is triggered.</p>
+<h3 id="the-loop-function">The <code>`loop()</code> function</h3>
+<p>Since <code>`kilo_tocks</code> is incremented 32 times per second, with modulo 64,every 2 seconds the program in the loop is triggered.</p>
 <p>Every 2 seconds, the rule of the game of life will be applied on the kilobot.</p>
 <pre><code class="language-c">void loop() {
 
@@ -381,10 +377,10 @@ void insertFirst(int key) {
 
 }
 </code></pre>
-<p>You may have already noticed but but neighbor_dead is useless.
+<p>You may have already noticed but neighbor_dead is useless.
 It was kept in the program to help with hypothetical future addons but you can remove it if you don't use it.</p>
 <h3 id="communication">Communication</h3>
-<p>The <code>message_tx()</code> is relativly classic :</p>
+<p>The <code>message_tx()</code> is relatively classic :</p>
 <pre><code class="language-c">message_t* message_tx(){
     message.type = NORMAL;
     message.data[0] = state;
@@ -392,7 +388,7 @@ It was kept in the program to help with hypothetical future addons but you can r
     message.crc = message_crc(&amp;message);
     return &amp;message;
 </code></pre>
-<p>The <code>message_rx()</code> function is  a bit more unusual. It simply check if the Id isn't already in the linked list and if no, it add it in the list and increament the neighbor_dead ou neighbor_living counter.</p>
+<p>The <code>message_rx()</code> function is  a bit more unusual. It simply checks if the Id isn't already in the linked list and if not it adds it in the list and increments the neighbor_dead or neighbor_living counter.</p>
 <pre><code class="language-c">void message_rx(message_t *msg, distance_measurement_t *dist) {
 
     struct node *element = find(msg-&gt;data[1]);
@@ -407,7 +403,7 @@ It was kept in the program to help with hypothetical future addons but you can r
         //add a living cellule in the counter
         else if(msg-&gt;data[0] == LIVING) {
             neighbor_living += 1;
-        }   
+        }  
     }
 }
 
@@ -428,7 +424,7 @@ return 0;
 <pre><code>
 ## Dead's  program
 
-    The two program are very similar, the only difference his in the ´setup()´ fonction.
+    The two programs are very similar, the only difference is in the ´setup()´ function.
 
 ```c
 void setup() {
@@ -453,7 +449,7 @@ void setup() {
 </code></pre>
 <hr />
 <h2 id="we-are-done">We are done !</h2>
-<p>You can now play with your kilobot at the game of life! You can now modify their positions to find all th e secret of this game! Just, pay attention at the distance between the kilobot. It will be stupid that the distance between two of them would to big to maintain the communication.</p>
+<p>You can now play the game of with life your kilobot ! You can now modify their positions to find all the secrets of this game! Just pay attention to the distance between the kilobots. It would be embarrassing that the distance between two of them would be too large to maintain the communication.</p>
 <hr />
               
             </div>
